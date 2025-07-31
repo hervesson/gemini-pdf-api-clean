@@ -4,10 +4,14 @@ const multer = require('multer');
 const fs = require('fs');
 const pdfParse = require('pdf-parse');
 const fetch = require('node-fetch'); // Certifique-se de que 'node-fetch' está instalado: npm install node-fetch
+const cors = require('cors');
 
 const app = express();
 const upload = multer({ dest: 'uploads/' });
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
+
+app.use(cors())
+app.use(express.json())
 
 app.post('/analisar', upload.fields([
   { name: 'contatos', maxCount: 1 },
